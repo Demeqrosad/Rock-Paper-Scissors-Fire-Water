@@ -1,0 +1,232 @@
+/* Variables */
+/* Global */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 60px;
+  font-family: "Shadows Into Light", cursive;
+}
+
+.btn {
+  font-size: 1rem;
+  border-radius: 50%;
+  border-width: 0.1rem;
+  border-color: lightgrey;
+  border-style: solid;
+  height: 2rem;
+  width: 2rem;
+  line-height: 1.8rem;
+  background: white;
+  text-align: center;
+  position: absolute;
+}
+
+.lhp:hover {
+  cursor: pointer;
+  border-color: black;
+}
+
+.container {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: center;
+      justify-content: center;
+}
+
+.row {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+/* Page Title */
+.page-title {
+  text-align: center;
+}
+
+h1 {
+  font-size: 1.2rem;
+}
+
+h1 span {
+  margin: 0 0.3rem;
+}
+
+h1 span i {
+  font-size: 0.6rem;
+  line-height: 1.2rem;
+}
+
+/* Score Board */
+.banner {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -ms-flex-pack: center;
+      justify-content: center;
+}
+
+.banner-row {
+  -ms-flex: 0 0 100%;
+      flex: 0 0 100%;
+  -ms-flex-pack: center;
+      justify-content: center;
+}
+
+.reset {
+  border-radius: 0.2rem;
+  border-width: 0.1rem;
+  border-color: forestgreen;
+  border-style: solid;
+  background: seagreen;
+  color: white;
+  padding: 0.2rem;
+  text-align: center;
+  line-height: 1.1rem;
+  font-size: 0.8rem;
+  margin-bottom: 0.4rem;
+}
+
+.reset:hover {
+  cursor: pointer;
+}
+
+.reset p {
+  margin: 0;
+}
+
+.scoreboard {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: center;
+      justify-content: center;
+}
+
+.score-miniboard {
+  text-align: center;
+  margin: 0.2rem 0.4rem;
+  width: 2.5rem;
+}
+
+.score-label {
+  border-radius: 0.2rem;
+  border-width: 0.1rem;
+  border-color: forestgreen;
+  border-style: solid;
+  background: seagreen;
+  color: white;
+  padding: 0.2rem;
+  line-height: 1.0rem;
+  margin-bottom: 3px;
+}
+
+.score-number {
+  border-radius: 0.2rem;
+  border-width: 0.1rem;
+  border-color: forestgreen;
+  border-style: solid;
+  background: seagreen;
+  color: white;
+  padding: 0.2rem;
+  line-height: 1.0rem;
+}
+
+/* Main Board */
+.main-board {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  width: 20rem;
+}
+
+.board {
+  border-radius: 50%;
+  border-width: 0.1rem;
+  border-color: beige;
+  border-style: solid;
+  height: 8rem;
+  width: 8rem;
+  background: cornsilk;
+  display: -ms-flexbox;
+  display: flex;
+  position: relative;
+  margin: 0.4rem;
+}
+
+/* Left-handed player's board */
+.lhp-board .btn i {
+  transform: scaleX(-1);
+}
+
+.btn:hoover {
+  border-color: black;
+}
+
+/* Buttons */
+.water {
+  left: 3rem;
+  top: 0.4rem;
+}
+
+.fire {
+  left: 5.25rem;
+  top: 2.15rem;
+}
+
+.rock {
+  left: 4.5rem;
+  top: 4.9rem;
+}
+
+.scissors {
+  left: 1.5rem;
+  top: 4.9rem;
+}
+
+.paper {
+  left: 0.5rem;
+  top: 2.15rem;
+}
+
+.chosen {
+  left: 3rem;
+  top: 2.85rem;
+  border-color: black;
+}
+
+.won {
+  background: yellowgreen;
+}
+
+.tied {
+  background: gold;
+}
+
+.lost {
+  background: crimson;
+}
+
+.recently-won {
+  border-color: yellowgreen;
+}
+
+.recently-tied {
+  border-color: gold;
+}
+
+.recently-lost {
+  border-color: crimson;
+}
+
+/* Right-handed player's board */
+.rhp-board .btn i {
+  color: silver;
+}
+/*# sourceMappingURL=style.css.map */

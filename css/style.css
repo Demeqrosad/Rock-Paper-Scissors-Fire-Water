@@ -5,7 +5,7 @@
 }
 
 html {
-  font-size: 60px;
+  font-size: 24px;
   font-family: "Shadows Into Light", cursive;
 }
 
@@ -201,6 +201,14 @@ h1 span i {
   border-color: black;
 }
 
+.chosen.lhp {
+  transition: 1s;
+}
+
+.chosen.rhp {
+  transition: background 1s;
+}
+
 .won {
   background: yellowgreen;
 }
@@ -225,8 +233,47 @@ h1 span i {
   border-color: crimson;
 }
 
+.disable:not(.chosen) {
+  display: none;
+}
+
 /* Right-handed player's board */
-.rhp-board .btn i {
+.rhp.btn i {
   color: silver;
+}
+
+.rhp.btn.chosen i {
+  color: black;
+}
+
+/* Footer */
+footer {
+  font-family: "Peddana", serif;
+  font-size: 0.5rem;
+}
+
+/* Media */
+@media (min-width: 576px) {
+  html {
+    font-size: 33px;
+  }
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 42px;
+  }
+}
+
+@media (min-width: 992px) {
+  html {
+    font-size: 51px;
+  }
+}
+
+@media (min-width: 1200px) {
+  html {
+    font-size: 60px;
+  }
 }
 /*# sourceMappingURL=style.css.map */

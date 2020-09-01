@@ -10,6 +10,7 @@ $color-lost: crimson;
 $color-scoreboard: seagreen;
 $color-scoreboard-border: forestgreen;
 $font-main: 'Shadows Into Light', cursive;
+$font-basic: 'Peddana', serif;
 
 /* Global */
 
@@ -20,7 +21,7 @@ $font-main: 'Shadows Into Light', cursive;
 
 html
 {
-	font-size: 60px;
+	font-size: 24px;
 	font-family: $font-main;
 }
 
@@ -233,6 +234,16 @@ h1 span i
 	border-color: black;
 }
 
+.chosen.lhp
+{
+	transition: 1s;
+}
+
+.chosen.rhp
+{
+	transition: background 1s;
+}
+
 .won
 {
 	background: $color-won;
@@ -263,9 +274,61 @@ h1 span i
 	border-color: $color-lost;
 }
 
+.disable:not(.chosen)
+{
+	display: none;
+}
+
 /* Right-handed player's board */
 
-.rhp-board .btn i
+.rhp.btn i
 {
 	color: $color-button;
+}
+
+.rhp.btn.chosen i
+{
+	color: black;
+}
+
+/* Footer */
+
+footer
+{
+	font-family: $font-basic;
+	font-size: 0.5rem;
+}
+
+/* Media */
+
+@media (min-width: 576px)
+{
+  	html
+	{
+    	font-size: 33px;
+  	}
+}
+
+@media (min-width: 768px)
+{
+  	html
+	{
+    	font-size: 42px;
+  	}
+}
+
+@media (min-width: 992px)
+{
+  	html
+	{
+    	font-size: 51px;
+  	}
+}
+
+@media (min-width: 1200px)
+{
+  	html
+	{
+    	font-size: 60px;
+  	}
 }

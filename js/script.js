@@ -2,10 +2,21 @@
 
 const winningPairs = new Set(['01','12','13','14','20','23','30','34','40','42']);
 const optLeftHandedPlayerSymbols = '.lhp';
+const optResetGameButton = '.reset'
 const optWonScoreValue = '.won-number';
 const optTiedScoreValue = '.tied-number';
 const optLostScoreValue = '.lost-number';
+const optChosenSymbols = '.chosen'
+const optWonToken = '.won';
+const optLostToken = '.lost';
+const optTiedToken = '.tied';
+const optWonRecently = '.recently-won';
+const optLostRecently = '.recently-lost';
+const optTiedRecently = '.recently-tied';
+const optSymbols = '.board>.btn'
+const optDisableToken = '.disable'
 const lhpSymbols = document.querySelectorAll(optLeftHandedPlayerSymbols);
+const resetGameButton = document.querySelector(optResetGameButton);
 
 function throwDice(faces)
 {
@@ -30,21 +41,19 @@ function chosenSymbolsHandler(symbol)
 	const resultID = yourChoice.toString().concat(opponentChoice);
 	const gameResult = getGameResult(resultID);
 	console.log('gameResult: ', gameResult);
-	updateScore(gameResult);
-
 	console.log('resultID: ', resultID)
 	console.log('Your move: ', yourSymbolID)
 	console.log('Opposite player\'s move: ', opponentSymbolID);
-	/*for(let lhpSymbol of lhpSymbols)
-	{
-  		lhpSymbol.removeEventListener('click', function(){console.log(lhpSymbol.getAttribute('value'), ' was disabled')});
-	}*/
 
-	/* Enable EventListener */
-	/*for(let lhpSymbol of lhpSymbols)
-	{
-  		lhpSymbol.addEventListener('click', chosenSymbolsHandler(lhpSymbol.getAttribute('value')));
-	}*/
+	unmarkLastStatus();
+	disableSymbols();
+	turnonChosenSymbols(yourSymbolID, opponentSymbolID);
+	setTimeout(function(){turnonResultFlags(yourSymbolID, opponentSymbolID, gameResult)}, 1000);
+	setTimeout(function(){turnoffResultFlags()}, 2000);
+	setTimeout(function(){turnoffChosenSymbols()}, 2000);
+	setTimeout(enableSymbols, 2000);
+	setTimeout(function(){updateScore(gameResult)}, 2000);
+	setTimeout(function(){markLastStatus(yourSymbolID, opponentSymbolID, gameResult)}, 2000);
 }
 
 function updateScore(result)
@@ -58,15 +67,15 @@ function updateScore(result)
 	
 	console.log('result: ', result);
 
-	if (result == 'won')
+	if (result == optWonToken.substring(1))
 	{
 		wonScoreValue.innerHTML = wonScoreHTML + 1;
 	}
-	else if (result == 'tied')
+	else if (result == optTiedToken.substring(1))
 	{
 		tiedScoreValue.innerHTML = tiedScoreHTML + 1;
 	}
-	else if (result == 'lost')
+	else if (result == optLostToken.substring(1))
 	{
 		lostScoreValue.innerHTML = lostScoreHTML + 1;
 	}
@@ -96,7 +105,119 @@ function getGameResult(resultID)
 	}
 }
 
+function turnoffChosenSymbols()
+{
+	const chosenSymbols = document.querySelectorAll(optChosenSymbols);
+	for(let chosenSymbol of chosenSymbols)
+	{
+		console.log('class to remove: ', optChosenSymbols.substring(1));
+		chosenSymbol.classList.remove(optChosenSymbols.substring(1));
+	}
+}
+
+function turnonResultFlags(yourSymbol, opponentSymbol, result)
+{
+	const yourSymbolID = document.getElementById(yourSymbol);
+	const opponentSymbolID = document.getElementById(opponentSymbol);
+	if (result == optWonToken.substring(1))
+	{
+		yourSymbolID.classList.add(optWonToken.substring(1));
+		opponentSymbolID.classList.add(optLostToken.substring(1));
+	}
+	else if (result == optLostToken.substring(1))
+	{
+		yourSymbolID.classList.add(optLostToken.substring(1));
+		opponentSymbolID.classList.add(optWonToken.substring(1));		
+	}
+	else
+	{
+		yourSymbolID.classList.add(optTiedToken.substring(1));
+		opponentSymbolID.classList.add(optTiedToken.substring(1));	
+	}
+
+}
+
+function turnoffResultFlags()
+{
+	const symbols = document.querySelectorAll(optSymbols);
+	for(let symbol of symbols)
+	{
+		symbol.classList.remove(optWonToken.substring(1));
+		symbol.classList.remove(optLostToken.substring(1));
+		symbol.classList.remove(optTiedToken.substring(1));
+	}
+}
+
+function turnonChosenSymbols(yourSymbol, opponentSymbol)
+{
+	const yourSymbolID = document.getElementById(yourSymbol);
+	const opponentSymbolID = document.getElementById(opponentSymbol);
+	yourSymbolID.classList.add(optChosenSymbols.substring(1));
+	opponentSymbolID.classList.add(optChosenSymbols.substring(1));
+}
+
+function disableSymbols()
+{
+	const symbols = document.querySelectorAll(optSymbols);
+	for(let symbol of symbols)
+	{
+		symbol.classList.add(optDisableToken.substring(1));
+	}
+}
+
+function enableSymbols()
+{
+	const symbols = document.querySelectorAll(optSymbols);
+	for(let symbol of symbols)
+	{
+		symbol.classList.remove(optDisableToken.substring(1));
+	}
+}
+
+function markLastStatus(yourSymbol, opponentSymbol, result)
+{
+	const yourSymbolID = document.getElementById(yourSymbol);
+	const opponentSymbolID = document.getElementById(opponentSymbol);
+	if (result == optWonToken.substring(1))
+	{
+		yourSymbolID.classList.add(optWonRecently.substring(1));
+		opponentSymbolID.classList.add(optLostRecently.substring(1));
+	}
+	else if (result == optLostToken.substring(1))
+	{
+		yourSymbolID.classList.add(optLostRecently.substring(1));
+		opponentSymbolID.classList.add(optWonRecently.substring(1));		
+	}
+	else
+	{
+		yourSymbolID.classList.add(optTiedRecently.substring(1));
+		opponentSymbolID.classList.add(optTiedRecently.substring(1));	
+	}
+}
+
+function unmarkLastStatus()
+{
+	const symbols = document.querySelectorAll(optSymbols);
+	for(let symbol of symbols)
+	{
+		symbol.classList.remove(optWonRecently.substring(1));
+		symbol.classList.remove(optLostRecently.substring(1));
+		symbol.classList.remove(optTiedRecently.substring(1));
+	}
+}
+
+function resetGame()
+{
+	console.log('END MATCH was clicked');
+	unmarkLastStatus();
+	turnoffResultFlags();
+	turnoffChosenSymbols();
+	enableSymbols();
+	updateScore();
+}
+
 	for(let lhpSymbol of lhpSymbols)
 	{
   		lhpSymbol.addEventListener('click', chosenSymbolsHandler);
 	}
+	resetGameButton.addEventListener('click', resetGame);

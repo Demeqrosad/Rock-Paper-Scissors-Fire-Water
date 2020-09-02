@@ -221,3 +221,9 @@ function resetGame()
   		lhpSymbol.addEventListener('click', chosenSymbolsHandler);
 	}
 	resetGameButton.addEventListener('click', resetGame);
+
+	for(let lhpSymbol of lhpSymbols)
+	{
+  		lhpSymbol.addEventListener('touchstart', chosenSymbolsHandler);
+	}
+	resetGameButton.addEventListener('touchstart', resetGame);
